@@ -1,0 +1,5 @@
+export const LOG_LEVEL_INFO = 9900000;
+export const LOG_LEVEL_NORMAL = 9900001;
+export const LOG_LEVEL_WARN = 9900002;
+export const LOG_LEVEL_ERROR = 9900003;
+export var LOG_LEVEL_SELECT = LOG_LEVEL_INFO;
