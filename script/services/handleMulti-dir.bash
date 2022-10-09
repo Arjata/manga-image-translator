@@ -2,7 +2,7 @@
 source /etc/profile
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/userroot/lib/anaconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+__conda_setup="$('/userroot/lib/anaconda3/bin/conda' 'shell.bash' 'hook' 2>/dev/null)"
 if [ $? -eq 0 ]; then
     eval "$__conda_setup"
 else
@@ -16,7 +16,6 @@ unset __conda_setup
 # <<< conda initialize <<<
 conda activate manga-image-translator
 
-DIR=$(dirname $0);
+DIR=$(dirname $0)
 echo "DIR:"${DIR}
-
-node ${DIR}"/../src/enter/handleMulti-dir.js" "-m" "/root/multiDir.json"
+node ${DIR}"/../src/enter/handleMulti-dir.js" "-m" "/userroot/service_rely/manga-image-translator_multiDir/config/multiDir.json"

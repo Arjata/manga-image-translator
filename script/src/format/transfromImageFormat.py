@@ -1,13 +1,14 @@
 import sys
 import os
 from PIL import Image
-__DIR__ = os.path.abspath(__file__+"/..")
-infile = __DIR__+"/../../result/final.png"
+
+__DIR__ = os.path.abspath(__file__ + "/..")
+infile = __DIR__ + "/../../../result/final.png"
 outfile = sys.argv[1]
 toFormat = sys.argv[2]
-print("main():toFormat:"+toFormat)
-print("main():infile:"+infile)
-print("main():outfile:"+outfile)
+print("main():toFormat:" + toFormat)
+print("main():infile:" + infile)
+print("main():outfile:" + outfile)
 if os.path.exists(infile) != True:
     exit("main():file not exist.")
 im = Image.open(infile)
