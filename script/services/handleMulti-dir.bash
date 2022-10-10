@@ -18,4 +18,4 @@ conda activate manga-image-translator
 
 DIR=$(dirname $0)
 echo "DIR:"${DIR}
-node ${DIR}"/../src/enter/handleMulti-dir.js" "-m" "/userroot/service_rely/manga-image-translator_multiDir/config/multiDir.json" > /tmp/serivesLog.manga-image-translator_multiDir.log
+node ${DIR}"/../src/enter/handleMulti-dir.js" "-m" "/userroot/service_rely/manga-image-translator_multiDir/config/multiDir.json"
