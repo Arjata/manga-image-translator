@@ -19,5 +19,5 @@ conda activate manga-image-translator
 DIR=$(dirname $0);
 echo "DIR:"${DIR}
 conda activate manga-image-translator 
-php ${DIR}"/../src/perfer/perfer.php"
+#php ${DIR}"/../src/perfer/perfer.php"
 node ${DIR}"/../src/enter/handleDir.js" "${1}" "${2}" "${3}" "${4}" "${5}" "${6}" "${7}" "${8}"

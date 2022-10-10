@@ -5,11 +5,14 @@ import { argv } from "node:process";
 import path from "node:path";
 import { fileURLToPath } from 'node:url';
 import { ioUnit } from "../io/ioUnit.js";
+import { perferWriteToLog } from "../globalFunctions.js";
 const fileSign = "src/enter/handleMulti-dir.js:";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const config = JSON.parse(readFileSync(__dirname + "/../../config.json").toString());
-const ioHead = new ioUnit();
+const config = JSON.parse(readFileSync(__dirname + "/../../config/handleMulti-dir.js.json").toString());
+const handleDir_js_config = JSON.parse(readFileSync(__dirname + "/../../config/handleDir.js.json").toString());
+perferWriteToLog(config.logDir.main);
+const ioHead = new ioUnit(config.logDir.main + "/latest.log");
 ioHead.dateType = "string";
 var useCudaStr = "";
 var translater = "google";
@@ -75,18 +78,18 @@ function main() {
         });
         cache.put(origenalDirPathSet[i], uuidv4());
         execSync(__dirname + "/../../bin/handleDir.bash -p \"" + origenalDirPathSet[i] + "\" -t " + translater + " -a " + NOA_Limit + " " + useCudaStr);
-        copyFileSync(config["logDir"] + "/latest.log", config["tmpDir"] + "/manga-image-translator." + cache.get(origenalDirPathSet[i]) + ".tmp");
+        copyFileSync(handleDir_js_config.logDir.main + "/latest.log", config.tmpDir + "/manga-image-translator." + cache.get(origenalDirPathSet[i]) + ".tmp");
     }
     let skipItemsSet = {};
     for (let i = 0; i < origenalDirPathSet.length; i++) {
         ioHead.logPrint({
-            "message": fileSign + "main():read log:" + config["tmpDir"] + "/manga-image-translator." + cache.get(origenalDirPathSet[i]) + ".tmp"
+            "message": fileSign + "main():read log:" + config.tmpDir + "/manga-image-translator." + cache.get(origenalDirPathSet[i]) + ".tmp"
         });
-        let log = readFileSync(config["tmpDir"] + "/manga-image-translator." + cache.get(origenalDirPathSet[i]) + ".tmp").toString();
+        let log = readFileSync(config.tmpDir + "/manga-image-translator." + cache.get(origenalDirPathSet[i]) + ".tmp").toString();
         let logLines = log.split("\n");
         let latestLine = JSON.parse(logLines[logLines.length - 1]);
         skipItemsSet[origenalDirPathSet[i]] = latestLine["data"];
-        unlinkSync(config["tmpDir"] + "/manga-image-translator." + cache.get(origenalDirPathSet[i]) + ".tmp");
+        unlinkSync(config.tmpDir + "/manga-image-translator." + cache.get(origenalDirPathSet[i]) + ".tmp");
     }
     ioHead.logPrint({
         "message": fileSign + "main():skipItems.",

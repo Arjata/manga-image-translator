@@ -1,0 +1,7 @@
+{
+    "logDir": {
+        "main": "/userroot/website/arjata/service/tools/gitRepos/manga-image-translator/script/logs/enter/handleDir.js/main",
+        "signalExec": "/userroot/website/arjata/service/tools/gitRepos/manga-image-translator/script/logs/enter/handleDir.js/signalExec"
+    },
+    "tmpDir": "/userroot/website/arjata/service/tools/gitRepos/manga-image-translator/script/tmp"
+}

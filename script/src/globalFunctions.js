@@ -1,3 +1,4 @@
+import { execSync } from "node:child_process";
 import fs from "node:fs";
 import path from "node:path";
 /**
@@ -163,4 +164,25 @@ export function getArrDS_S(array0, array1) {
         }
     }
     return resultArr;
+}
+/**
+ * 获取当前时间.
+ * @returns {String} 时间.
+ */
+export function getTimeUsF() {
+    let result = execSync("/userroot/mbin/getTimeUs -f");
+    return Utf8ArrayToStr(result);
+}
+/**
+ * 日志写入前准备.
+ * @param {String} logDir 日志文件夹.
+ * @returns {Number} 函数执行状态.
+ */
+export function perferWriteToLog(logDir) {
+    if (!fs.existsSync(logDir)) execSync("mkdir -p " + logDir);
+    if (!fs.existsSync(logDir + "/latest.log")) return -1;
+    let command = "tar -czvf " + logDir + "/" + getTimeUsF() + ".tar.gz -C " + logDir + " latest.log";
+    execSync(command);
+    fs.unlinkSync(logDir + "/latest.log");
+    return 0;
 }
