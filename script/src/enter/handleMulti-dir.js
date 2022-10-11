@@ -87,7 +87,7 @@ function main() {
         });
         let log = readFileSync(config.tmpDir + "/manga-image-translator." + cache.get(origenalDirPathSet[i]) + ".tmp").toString();
         let logLines = log.split("\n");
-        let latestLine = JSON.parse(logLines[logLines.length - 1]);
+        let latestLine = JSON.parse(logLines[logLines.length - 2]);
         skipItemsSet[origenalDirPathSet[i]] = latestLine["data"];
         unlinkSync(config.tmpDir + "/manga-image-translator." + cache.get(origenalDirPathSet[i]) + ".tmp");
     }
