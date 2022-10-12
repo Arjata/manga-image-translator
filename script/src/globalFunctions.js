@@ -178,7 +178,7 @@ export function getTimeUsF() {
  * @param {String} logDir 日志文件夹.
  * @returns {Number} 函数执行状态.
  */
-export function perferWriteToLog(logDir) {
+export function prepareWriteToLog(logDir) {
     if (!fs.existsSync(logDir)) execSync("mkdir -p " + logDir);
     if (!fs.existsSync(logDir + "/latest.log")) return -1;
     let command = "tar -czvf " + logDir + "/" + getTimeUsF() + ".tar.gz -C " + logDir + " latest.log";

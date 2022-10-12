@@ -1,13 +1,13 @@
 import path from "node:path";
 import { ioUnit } from "../io/ioUnit.js";
 import { fileURLToPath } from 'node:url';
-import { exec, execSync } from "node:child_process";
-import { walkSync, getArrDS, Utf8ArrayToStr, errorFormat, getArrDS_S, getTimeUsF, perferWriteToLog } from "../globalFunctions.js";
-import { unlinkSync, readFileSync, copyFileSync, existsSync } from "node:fs";
+import { execSync } from "node:child_process";
+import { walkSync, getArrDS, Utf8ArrayToStr, errorFormat, getArrDS_S, prepareWriteToLog } from "../globalFunctions.js";
+import { unlinkSync, readFileSync, copyFileSync } from "node:fs";
 import { v4 as uuidv4 } from 'uuid';
 import { argv } from "node:process";
 function signalExec(file, select) {
-    perferWriteToLog(config.logDir.signalExec);
+    prepareWriteToLog(config.logDir.signalExec);
     let signalCmd = "python ./translate_demo.py " + useCudaStr + " --verbose --use-inpainting --translator=" + translater + " --target-lang=CHS --image \"" + file + "\" | tee " + config.logDir.signalExec + "/latest.log";
     ioHead.logPrint({
         "message": fileSign + "signalExec():running cmd:" + signalCmd
@@ -112,7 +112,7 @@ const fileSign = "src/enter/handleDir.js:";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const config = JSON.parse(readFileSync(__dirname + "/../../config/handleDir.js.json"));
-perferWriteToLog(config.logDir.main);
+prepareWriteToLog(config.logDir.main);
 const ioHead = new ioUnit(config.logDir.main + "/latest.log");
 ioHead.dateType = "string";
 var origenalDirPath = path.resolve("./");
@@ -166,7 +166,7 @@ ioHead.logPrint({
     }
 });
 //初次执行.
-perferWriteToLog(config.logDir.signalExec);
+prepareWriteToLog(config.logDir.signalExec);
 let fristCmd = "python ./translate_demo.py " + useCudaStr + " --verbose --mode batch --use-inpainting --translator=" + translater + " --target-lang=CHS --image \"" + origenalDirPath + "\" | tee " + config.logDir.signalExec + "/latest.log";
 ioHead.logPrint({
     "message": fileSign + "main():running cmd:" + fristCmd
