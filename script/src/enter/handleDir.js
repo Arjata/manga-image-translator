@@ -21,7 +21,7 @@ function signalExec(file, select) {
         let formatImageOutFile = config["tmpDir"] + "/manga-image-translator." + uuidv4() + ".tmp";
         let formatImageCmd = "python " + __dirname + "/../format/transfromImageFormat.py " + formatImageOutFile + " " + fileFormat;
         ioHead.logPrint({
-            "message": fileSign + "signalExec():runnning command:" + formatImageCmd
+            "message": fileSign + "signalExec():running command:" + formatImageCmd
         });
         execSync(formatImageCmd);
         ioHead.logPrint({
