@@ -15,8 +15,8 @@ im = Image.open(infile)
 if toFormat == "png":
     im.save(outfile, "PNG")
 elif toFormat == "jpg":
-    im.convert("RGB")
+    im = im.convert("RGB")
     im.save(outfile, "JPEG", quality=95)
 elif toFormat == "jpeg":
-    im.convert("RGB")
+    im = im.convert("RGB")
     im.save(outfile, "JPEG", quality=95)
